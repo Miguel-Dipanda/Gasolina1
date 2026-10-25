@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gasolina.Views.MaintenancePage"
+             BackgroundColor="{StaticResource BackgroundLight}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="120, *, Auto">
+        <!-- Header Bleu -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryBlue}" Padding="20">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                <Label Text="Entretien" TextColor="White" FontSize="24" FontAttributes="Bold" />
+                <Label Text="Ne ratez plus vos rappels" TextColor="#D1D5DB" FontSize="14" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Contenu principal -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="16" Padding="20">
+
+                <!-- Carte 1 : Prochain entretien (Vidange) -->
+                <Border Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="PROCHAIN ENTRETIEN" TextColor="{StaticResource TextSecondary}" FontSize="11" CharacterSpacing="1" FontAttributes="Bold" />
+                        <Label Text="Vidange" TextColor="{StaticResource PrimaryBlue}" FontSize="22" FontAttributes="Bold" />
+                        <Label Text="Dans environ 1 500 km" TextColor="{StaticResource TextSecondary}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Carte 2 : Filtre à air -->
+                <Border Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Filtre à air" TextColor="{StaticResource TextPrimary}" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="Prévu dans 3 000 km" TextColor="{StaticResource TextSecondary}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Carte 3 : Pneus -->
+                <Border Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Pneus" TextColor="{StaticResource TextPrimary}" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="Contrôle dans 2 mois" TextColor="{StaticResource TextSecondary}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Bouton Ajouter un rappel -->
+                <Button Text="Ajouter un rappel" 
+                        Style="{StaticResource PrimaryBtnStyle}" 
+                        Margin="0,10,0,0" 
+                        Clicked="OnAddReminderClicked" />
+
+                <!-- Banner Information : Rappel activé -->
+                <Border BackgroundColor="#E8EEF5" StrokeShape="RoundRectangle 12" StrokeThickness="0" Padding="20" Margin="0,10,0,0">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Rappel activé" TextColor="#10B981" FontSize="13" FontAttributes="Bold" />
+                        <Label Text="Vous recevrez une notification" TextColor="{StaticResource TextPrimary}" FontSize="15" FontAttributes="Bold" />
+                        <Label Text="avant la prochaine échéance." TextColor="{StaticResource TextSecondary}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Bouton de retour au tableau de bord -->
+                <Button Text="Annuler" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource TextSecondary}" 
+                        BorderColor="{StaticResource TextSecondary}" 
+                        BorderWidth="1" 
+                        CornerRadius="8" 
+                        HeightRequest="50" 
+                        Margin="0,10,0,20" 
+                        Clicked="OnBackClicked" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Barre de navigation du bas -->
+        <Grid Grid.Row="2" BackgroundColor="White" Padding="10,5" ColumnDefinitions="*,*,*,*,*">
+            <Label Grid.Column="0" Text="A" TextColor="{StaticResource TextSecondary}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Column="1" Text="F" TextColor="{StaticResource TextSecondary}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Column="2" Text="H" TextColor="{StaticResource TextSecondary}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Column="3" Text="E" TextColor="{StaticResource PrimaryBlue}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Column="4" Text="P" TextColor="{StaticResource TextSecondary}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>

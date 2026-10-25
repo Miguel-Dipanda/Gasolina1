@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="Gasolina.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:Gasolina.Views"
+       Shell.FlyoutBehavior="Disabled">
+
+    <!-- Page de Connexion -->
+    <ShellContent
+        Title="Connexion"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage" />
+
+    <!-- Page d'Inscription -->
+    <ShellContent
+        Title="Inscription"
+        ContentTemplate="{DataTemplate views:RegisterPage}"
+        Route="RegisterPage" />
+
+    <!-- Tableau de bord -->
+    <ShellContent
+        Title="Tableau de bord"
+        ContentTemplate="{DataTemplate views:DashboardPage}"
+        Route="DashboardPage" />
+
+    <!-- Nouveau Plein -->
+    <ShellContent
+        Title="Nouveau Plein"
+        ContentTemplate="{DataTemplate views:AddFuelPage}"
+        Route="AddFuelPage" />
+
+    <!-- Historique -->
+    <ShellContent
+        Title="Historique"
+        ContentTemplate="{DataTemplate views:HistoryPage}"
+        Route="HistoryPage" />
+
+    <!-- Entretien -->
+    <ShellContent
+        Title="Entretien"
+        ContentTemplate="{DataTemplate views:MaintenancePage}"
+        Route="MaintenancePage" />
+
+    <!-- Coût Kilométrique -->
+    <ShellContent
+        Title="Coût Kilométrique"
+        ContentTemplate="{DataTemplate views:CostPerKmPage}"
+        Route="CostPerKmPage" />
+
+    <!-- Consommation Moyenne -->
+    <ShellContent
+        Title="Consommation"
+        ContentTemplate="{DataTemplate views:AverageConsumptionPage}"
+        Route="AverageConsumptionPage" />
+
+</Shell>

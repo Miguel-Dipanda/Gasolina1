@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gasolina.Views.LoginPage"
+             BackgroundColor="{StaticResource BackgroundLight}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="180, *">
+        <!-- Header Bleu -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryBlue}" RowDefinitions="*, *">
+            <Label Text="GASOLINA" TextColor="White" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="End"/>
+            <Label Grid.Row="1" Text="Maîtrisez votre consommation." TextColor="#D1D5DB" FontSize="14" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,5,0,0"/>
+        </Grid>
+
+        <!-- Formulaire dans une Carte Blanche -->
+        <Border Grid.Row="1" Margin="20,-30,20,20" Style="{StaticResource CardStyle}">
+            <VerticalStackLayout Spacing="16" VerticalOptions="Center">
+                <Label Text="Connexion" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Adresse e-mail" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                    <Border Style="{StaticResource CardStyle}" Padding="0,0,10,0">
+                        <Entry Placeholder="exemple@email.com" Keyboard="Email" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Mot de passe" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                    <Border Style="{StaticResource CardStyle}" Padding="0,0,10,0">
+                        <Entry IsPassword="True" Placeholder="••••••••" />
+                    </Border>
+                    <Label Text="Mot de passe oublié ?" TextColor="{StaticResource PrimaryBlue}" HorizontalOptions="End" FontSize="12" FontAttributes="Bold" />
+                </VerticalStackLayout>
+
+                <!-- Bouton Se Connecter -->
+                <Button Text="Se connecter" Style="{StaticResource PrimaryBtnStyle}" Margin="0,10,0,0" Clicked="OnLoginClicked" />
+
+                <Label Text="OU" HorizontalOptions="Center" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+
+                <!-- Bouton Créer un compte -->
+                <Button Text="Créer un compte" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource PrimaryBlue}" 
+                        BorderColor="{StaticResource PrimaryBlue}" 
+                        BorderWidth="1" 
+                        CornerRadius="8" 
+                        HeightRequest="50" 
+                        Clicked="OnRegisterClicked" />
+
+                <Label Text="Vos données de consommation restent privées." TextColor="{StaticResource TextSecondary}" FontSize="11" HorizontalOptions="Center" Margin="0,15,0,0" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

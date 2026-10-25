@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gasolina.Views.AddFuelPage"
+             BackgroundColor="{StaticResource BackgroundLight}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="120, *">
+        <!-- Header Bleu -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryBlue}" Padding="20">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                <Label Text="Nouveau plein" TextColor="White" FontSize="20" FontAttributes="Bold" />
+                <Label Text="Enregistrez votre dernier ravitaillement" TextColor="#D1D5DB" FontSize="14" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Formulaire principal dans la Carte Blanche -->
+        <ScrollView Grid.Row="1">
+            <Border Margin="20,20,20,20" Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Détails du plein" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+
+                    <!-- Champ 1 : Quantité -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Quantité (Litres)" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                        <Border Style="{StaticResource CardStyle}" Padding="0,0,10,0">
+                            <Entry x:Name="txtLitres"  Placeholder="Ex: 30" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Champ 2 : Coût total -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Coût total (XAF)" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                        <Border Style="{StaticResource CardStyle}" Padding="0,0,10,0">
+                            <Entry x:Name="txtMontant" Placeholder="Ex: 18000" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Champ 3 : Kilométrage -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Kilométrage actuel (km)" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                        <Border Style="{StaticResource CardStyle}" Padding="0,0,10,0">
+                            <Entry x:Name="txtKm"  Placeholder="Ex: 45000" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Choix du type de carburant -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Type de carburant" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                        <Grid ColumnDefinitions="*, *, *" ColumnSpacing="10">
+                            <Button Grid.Column="0" Text="Essence" Style="{StaticResource PrimaryBtnStyle}" FontSize="12" HeightRequest="40" />
+                            <Button Grid.Column="1" Text="Gasoil" BackgroundColor="Transparent" TextColor="{StaticResource PrimaryBlue}" BorderColor="{StaticResource PrimaryBlue}" BorderWidth="1" CornerRadius="8" FontSize="12" HeightRequest="40" />
+                            <Button Grid.Column="2" Text="Autre" BackgroundColor="Transparent" TextColor="{StaticResource PrimaryBlue}" BorderColor="{StaticResource PrimaryBlue}" BorderWidth="1" CornerRadius="8" FontSize="12" HeightRequest="40" />
+                        </Grid>
+                    </VerticalStackLayout>
+
+                    <!-- Champ 4 : Remarques / Station -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Station / Notes (optionnel)" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                        <Border Style="{StaticResource CardStyle}" Padding="0,0,10,0">
+                            <Entry x:Name="txtStation" Placeholder="Ex: Total" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Bouton Enregistrer -->
+                    <Button Text="Enregistrer le plein" Style="{StaticResource PrimaryBtnStyle}" Margin="0,10,0,0" Clicked="OnSaveClicked" />
+
+                    <!-- Bouton Annuler -->
+                    <Button Text="Annuler" BackgroundColor="Transparent" TextColor="{StaticResource TextSecondary}" BorderColor="{StaticResource TextSecondary}" BorderWidth="1" CornerRadius="8" HeightRequest="50" Clicked="OnCancelClicked" />
+                </VerticalStackLayout>
+            </Border>
+        </ScrollView>
+    </Grid>
+</ContentPage>

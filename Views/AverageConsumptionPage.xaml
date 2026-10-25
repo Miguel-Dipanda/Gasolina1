@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gasolina.Views.AverageConsumptionPage"
+             BackgroundColor="{StaticResource BackgroundLight}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="120, *">
+        <!-- En-tête bleu avec flèche de retour -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryBlue}" Padding="20">
+            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" VerticalOptions="Center">
+                <Label Grid.Column="0" Text="‹" TextColor="White" FontSize="32" FontAttributes="Bold" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                    <Label Text="Consommation" TextColor="White" FontSize="22" FontAttributes="Bold" />
+                    <Label Text="Analyse de votre véhicule" TextColor="#D1D5DB" FontSize="13" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
+        <!-- Contenu principal -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="16" Padding="20">
+
+                <!-- Grande carte bleu : Consommation Moyenne -->
+                <Border BackgroundColor="{StaticResource PrimaryBlue}" Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="CONSOMMATION MOYENNE" TextColor="#D1D5DB" FontSize="11" CharacterSpacing="1" FontAttributes="Bold" />
+                        <Label Text="7,2 L/100 km" TextColor="White" FontSize="30" FontAttributes="Bold" />
+                        <Label Text="Bonne stabilité sur les 5 derniers pleins" TextColor="#D1D5DB" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Carte Évolution (Graphique) -->
+                <Border Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="Évolution" TextColor="{StaticResource TextPrimary}" FontSize="18" FontAttributes="Bold" />
+
+                        <!-- Tracé du graphique SVG / Polyline -->
+                        <Grid HeightRequest="120" Margin="0,10,0,0">
+                            <!-- Ligne de repère de fond -->
+                            <Line X1="0" Y1="100" X2="300" Y2="100" Stroke="#E5E7EB" StrokeThickness="1" HorizontalOptions="FillAndExpand" VerticalOptions="End" />
+
+                            <!-- Graphique à courbe -->
+                            <Polyline Points="10,80 60,50 110,65 160,25 210,40 260,15"
+                                      Stroke="{StaticResource PrimaryBlue}"
+                                      StrokeThickness="3"
+                                      StrokeLineCap="Round"
+                                      StrokeLineJoin="Round" />
+
+                            <!-- Points clés sur la courbe -->
+                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{StaticResource PrimaryBlue}" HorizontalOptions="Start" VerticalOptions="Start" Margin="6,76,0,0" />
+                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{StaticResource PrimaryBlue}" HorizontalOptions="Start" VerticalOptions="Start" Margin="56,46,0,0" />
+                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{StaticResource PrimaryBlue}" HorizontalOptions="Start" VerticalOptions="Start" Margin="106,61,0,0" />
+                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{StaticResource PrimaryBlue}" HorizontalOptions="Start" VerticalOptions="Start" Margin="156,21,0,0" />
+                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{StaticResource PrimaryBlue}" HorizontalOptions="Start" VerticalOptions="Start" Margin="206,36,0,0" />
+                            <Ellipse WidthRequest="8" HeightRequest="8" Fill="{StaticResource PrimaryBlue}" HorizontalOptions="Start" VerticalOptions="Start" Margin="256,11,0,0" />
+                        </Grid>
+
+                        <!-- Axes X (1 à 5) -->
+                        <Grid ColumnDefinitions="*, *">
+                            <Label Grid.Column="0" Text="1" TextColor="{StaticResource TextSecondary}" FontSize="12" HorizontalOptions="Start" />
+                            <Label Grid.Column="1" Text="5" TextColor="{StaticResource TextSecondary}" FontSize="12" HorizontalOptions="End" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Deux cartes du bas : Meilleur et Moyenne -->
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                    <Border Grid.Column="0" Style="{StaticResource CardStyle}" Padding="15">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="MEILLEUR" TextColor="{StaticResource TextSecondary}" FontSize="11" CharacterSpacing="1" FontAttributes="Bold" />
+                            <Label Text="6,8 L/100" TextColor="#10B981" FontSize="18" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource CardStyle}" Padding="15">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="MOYENNE" TextColor="{StaticResource TextSecondary}" FontSize="11" CharacterSpacing="1" FontAttributes="Bold" />
+                            <Label Text="7,2 L/100" TextColor="{StaticResource PrimaryBlue}" FontSize="18" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Bouton de retour au tableau de bord -->
+                <Button Text="Annuler" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource TextSecondary}" 
+                        BorderColor="{StaticResource TextSecondary}" 
+                        BorderWidth="1" 
+                        CornerRadius="8" 
+                        HeightRequest="50" 
+                        Margin="0,10,0,20" 
+                        Clicked="OnBackClicked" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gasolina.Views.DashboardPage"
+             BackgroundColor="{StaticResource BackgroundLight}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="120, *">
+        <!-- Header Bleu -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryBlue}" Padding="20">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                <Label Text="Gasolina" TextColor="White" FontSize="24" FontAttributes="Bold" />
+                <Label Text="Bonjour" TextColor="#D1D5DB" FontSize="14" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Contenu principal -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="15" Padding="20">
+
+                <!-- Carte Bleu : Consommation moyenne -->
+                <Border BackgroundColor="{StaticResource PrimaryBlue}" Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label  Text="CONSOMMATION MOYENNE" TextColor="#D1D5DB" FontSize="11" CharacterSpacing="1" />
+                        <Label x:Name ="lblConsommation" Text="7,2 L/100 km" TextColor="White" FontSize="28" FontAttributes="Bold" />
+                        <Label x:Name ="lblDernierPleinLitres" Text="Dernier plein : 08,4 L" TextColor="#D1D5DB" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Deux cartes côte à côte : Coût/km et Kilométrage -->
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                    <Border Grid.Column="0" Style="{StaticResource CardStyle}" Padding="15">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="COÛT / KM" TextColor="{StaticResource TextSecondary}" FontSize="11" CharacterSpacing="1" />
+                            <Label  x:Name ="lblCoutKm" Text="92 FCFA" TextColor="{StaticResource PrimaryBlue}" FontSize="20" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource CardStyle}" Padding="15">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="KILOMÉTRAGE" TextColor="{StaticResource TextSecondary}" FontSize="11" CharacterSpacing="1" />
+                            <Label x:Name ="lblKilometrage" Text="12 480 km" TextColor="{StaticResource PrimaryBlue}" FontSize="20" FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Section Actions rapides (Les 5 blocs cliquables) -->
+                <VerticalStackLayout Spacing="10" Margin="0,10,0,10">
+                    <Label Text="Actions rapides" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+
+                    <!-- Bloc 1 : Enregistrer un plein -->
+                    <Border Style="{StaticResource CardStyle}" Padding="15">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAddFuelTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="35, *" ColumnSpacing="12">
+                            <Label Grid.Column="0" Text="F" TextColor="#F59E0B" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="Enregistrer un plein" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Ajouter un nouveau relevé" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <!-- Bloc 2 : Voir l'historique -->
+                    <Border Style="{StaticResource CardStyle}" Padding="15">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnHistoryTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="35, *" ColumnSpacing="12">
+                            <Label Grid.Column="0" Text="H" TextColor="#3B82F6" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="Voir l'historique" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Consulter vos derniers trajets" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <!-- Bloc 3 : Entretien -->
+                    <Border Style="{StaticResource CardStyle}" Padding="15">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMaintenanceTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="35, *" ColumnSpacing="12">
+                            <Label Grid.Column="0" Text="E" TextColor="#10B981" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="Entretien" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Prochain rappel : 1 500 km" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <!-- Bloc 4 : Coût Kilométrique -->
+                    <Border Style="{StaticResource CardStyle}" Padding="15">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCostPerKmTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="35, *" ColumnSpacing="12">
+                            <Label Grid.Column="0" Text="C" TextColor="#8B5CF6" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="Coût Kilométrique" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Analyser vos dépenses" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <!-- Bloc 5 : Consommation Moyenne -->
+                    <Border Style="{StaticResource CardStyle}" Padding="15">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAverageConsumptionTapped" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="35, *" ColumnSpacing="12">
+                            <Label Grid.Column="0" Text="M" TextColor="#EC4899" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="Consommation Moyenne" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Suivre la consommation" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <!-- Bouton Se déconnecter -->
+                <Button Text="Se déconnecter" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#EF4444" 
+                        BorderColor="#EF4444" 
+                        BorderWidth="1" 
+                        CornerRadius="8" 
+                        HeightRequest="50" 
+                        Margin="0,10,0,20" 
+                        Clicked="OnLogoutClicked" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Gasolina.Views.CostPerKmPage"
+             BackgroundColor="{StaticResource BackgroundLight}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="120, *">
+        <!-- En-tête bleu avec bouton retour -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryBlue}" Padding="20">
+            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" VerticalOptions="Center">
+                <Label Grid.Column="0" Text="‹" TextColor="White" FontSize="32" FontAttributes="Bold" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBackClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                    <Label Text="Coût kilométrique" TextColor="White" FontSize="22" FontAttributes="Bold" />
+                    <Label Text="Comprenez le coût réel de vos trajets" TextColor="#D1D5DB" FontSize="13" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
+        <!-- Contenu principal -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="16" Padding="20">
+
+                <!-- Carte : Coût moyen par km -->
+                <Border Style="{StaticResource CardStyle}" Padding="20">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="COÛT MOYEN PAR KM" TextColor="{StaticResource TextSecondary}" FontSize="11" CharacterSpacing="1" FontAttributes="Bold" />
+                        <Label Text="92 FCFA / km" TextColor="{StaticResource PrimaryBlue}" FontSize="28" FontAttributes="Bold" />
+                        <Label Text="sur les 30 derniers jours" TextColor="{StaticResource TextSecondary}" FontSize="13" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Section : Simulation d'un trajet -->
+                <VerticalStackLayout Spacing="12" Margin="0,10,0,0">
+                    <Label Text="Simulation d'un trajet" TextColor="{StaticResource TextPrimary}" FontSize="18" FontAttributes="Bold" />
+
+                    <!-- Champ Saisie de Distance -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Distance (km)" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                        <Border Style="{StaticResource CardStyle}" Padding="10,0">
+                            <Entry x:Name="DistanceEntry" 
+                                   Text="150" 
+                                   Placeholder="Ex: 150" 
+                                   TextColor="{StaticResource TextPrimary}" 
+                                   FontSize="15" 
+                                   Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Résultats d'estimation (Carburant & Coût) -->
+                    <Border Style="{StaticResource CardStyle}" Padding="20" Margin="0,5,0,0">
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                            <VerticalStackLayout Grid.Column="0" Spacing="6">
+                                <Label Text="Carburant estimé" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                                <Label x:Name="FuelEstimateLabel" Text="10,8 L" TextColor="{StaticResource PrimaryBlue}" FontSize="22" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="6">
+                                <Label Text="Coût estimé" TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                                <Label x:Name="CostEstimateLabel" Text="9 936 FCFA" TextColor="{StaticResource PrimaryBlue}" FontSize="22" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+
+                    <!-- Bouton Calculer le trajet -->
+                    <Button Text="Calculer le trajet" 
+                            Style="{StaticResource PrimaryBtnStyle}" 
+                            Margin="0,5,0,0" 
+                            Clicked="OnCalculateClicked" />
+                </VerticalStackLayout>
+
+                <!-- Encadré Astuce -->
+                <Border BackgroundColor="#E8EEF5" StrokeShape="RoundRectangle 12" StrokeThickness="0" Padding="15" Margin="0,10,0,0">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Astuce" TextColor="{StaticResource PrimaryBlue}" FontSize="13" FontAttributes="Bold" />
+                        <Label Text="Un trajet régulier permet de mieux prévoir votre budget carburant." TextColor="{StaticResource TextSecondary}" FontSize="12" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Bouton de retour au tableau de bord -->
+                <Button Text="Annuler" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource TextSecondary}" 
+                        BorderColor="{StaticResource TextSecondary}" 
+                        BorderWidth="1" 
+                        CornerRadius="8" 
+                        HeightRequest="50" 
+                        Margin="0,10,0,20" 
+                        Clicked="OnBackClicked" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
